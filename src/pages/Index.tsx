@@ -7,6 +7,7 @@ import { DocumentUpload } from '../components/steps/DocumentUpload';
 import { Agreement } from '../components/steps/Agreement';
 import { Inspection } from '../components/steps/Inspection';
 import { Confirmation } from '../components/steps/Confirmation';
+import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -18,6 +19,8 @@ const Index = () => {
     inspection: {},
   });
 
+  const { toast } = useToast();
+
   const steps = [
     { id: 1, title: 'Personal Info', component: PersonalInfo },
     { id: 2, title: 'Property & Electricity', component: PropertyElectricity },
@@ -26,6 +29,21 @@ const Index = () => {
     { id: 5, title: 'Inspection', component: Inspection },
     { id: 6, title: 'Confirmation', component: Confirmation },
   ];
+
+  const handleSaveProgress = () => {
+    // Save form data to localStorage
+    localStorage.setItem('solarFormProgress', JSON.stringify({
+      currentStep,
+      formData,
+      savedAt: new Date().toISOString()
+    }));
+
+    toast({
+      title: "Progress Saved",
+      description: "Your application progress has been saved successfully.",
+      variant: "default",
+    });
+  };
 
   const handleNext = (stepData: any) => {
     setFormData(prev => ({
@@ -66,7 +84,11 @@ const Index = () => {
           </div>
 
           {/* Progress Tracker */}
-          <ProgressTracker steps={steps} currentStep={currentStep} />
+          <ProgressTracker 
+            steps={steps} 
+            currentStep={currentStep} 
+            onSaveProgress={handleSaveProgress}
+          />
 
           {/* Main Content */}
           <div className="bg-white rounded-xl shadow-lg p-8 mt-8">

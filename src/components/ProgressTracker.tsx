@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Check } from 'lucide-react';
+import { Check, Save } from 'lucide-react';
+import { Button } from './ui/button';
 
 interface Step {
   id: number;
@@ -10,11 +11,24 @@ interface Step {
 interface ProgressTrackerProps {
   steps: Step[];
   currentStep: number;
+  onSaveProgress?: () => void;
 }
 
-export const ProgressTracker: React.FC<ProgressTrackerProps> = ({ steps, currentStep }) => {
+export const ProgressTracker: React.FC<ProgressTrackerProps> = ({ steps, currentStep, onSaveProgress }) => {
   return (
     <div className="w-full">
+      {/* Save Progress Button */}
+      <div className="flex justify-end mb-6">
+        <Button
+          onClick={onSaveProgress}
+          variant="outline"
+          className="bg-green-50 border-green-200 text-green-700 hover:bg-green-100 hover:border-green-300 transition-all duration-300"
+        >
+          <Save className="w-4 h-4 mr-2" />
+          Save Progress
+        </Button>
+      </div>
+
       <div className="relative flex items-center justify-between mb-8 px-4">
         {/* Background Progress Line */}
         <div className="absolute top-6 left-0 w-full h-1 bg-gradient-to-r from-gray-200 via-gray-200 to-gray-200 rounded-full">
@@ -35,7 +49,7 @@ export const ProgressTracker: React.FC<ProgressTrackerProps> = ({ steps, current
                 step.id < currentStep
                   ? 'bg-gradient-to-br from-green-400 to-green-600 border-green-500 text-white scale-110 shadow-lg animate-pulse'
                   : step.id === currentStep
-                  ? 'bg-gradient-to-br from-blue-500 to-blue-600 border-blue-500 text-white scale-125 shadow-2xl animate-bounce'
+                  ? 'bg-gradient-to-br from-blue-500 to-blue-600 border-blue-500 text-white scale-125 shadow-2xl'
                   : 'bg-white border-gray-300 text-gray-500 hover:border-gray-400 hover:scale-105'
               }`}
               style={{
