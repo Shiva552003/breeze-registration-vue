@@ -71,14 +71,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
               Solar Installation Application
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-600 px-4">
               Join thousands of homeowners saving with solar energy
             </p>
           </div>
@@ -91,7 +91,7 @@ const Index = () => {
           />
 
           {/* Main Content */}
-          <div className="bg-white rounded-xl shadow-lg p-8 mt-8">
+          <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 lg:p-8 mt-6 sm:mt-8">
             <CurrentStepComponent
               data={formData[getStepKey(currentStep) as keyof typeof formData]}
               onNext={handleNext}
@@ -102,14 +102,14 @@ const Index = () => {
           </div>
 
           {/* Help Section */}
-          <div className="mt-8 text-center">
-            <p className="text-gray-600">
+          <div className="mt-6 sm:mt-8 text-center px-4">
+            <p className="text-sm sm:text-base text-gray-600">
               Need help? Contact us at{' '}
-              <a href="mailto:support@solar.com" className="text-green-600 hover:text-green-700">
+              <a href="mailto:support@solar.com" className="text-green-600 hover:text-green-700 break-all">
                 support@solar.com
               </a>{' '}
               or call{' '}
-              <a href="tel:+1234567890" className="text-green-600 hover:text-green-700">
+              <a href="tel:+1234567890" className="text-green-600 hover:text-green-700 whitespace-nowrap">
                 (123) 456-7890
               </a>
             </p>
