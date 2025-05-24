@@ -62,10 +62,7 @@ export const ProgressTracker: React.FC<ProgressTrackerProps> = ({
 
             {/* Connecting Lines Between Steps */}
             {index < steps.length - 1 && <div className="absolute top-6 left-12 w-full">
-                <div className={`h-1 transition-all duration-700 ease-out ${step.id < currentStep ? 'bg-gradient-to-r from-green-500 to-green-400 shadow-sm' : 'bg-gray-200'}`} style={{
-            width: 'calc(100vw / 6 - 3rem)',
-            boxShadow: step.id < currentStep ? '0 2px 8px rgba(34, 197, 94, 0.3)' : 'none'
-          }} />
+                
               </div>}
           </div>)}
       </div>
